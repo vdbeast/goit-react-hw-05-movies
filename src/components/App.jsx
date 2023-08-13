@@ -1,16 +1,17 @@
-export const App = () => {
+import { NavLink } from "react-router-dom";
+import React from "react";
+
+const App = () => {
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
+    <div>
+      <header className="header">
+        <nav>
+          <NavLink className="header_link" to="/">Home</NavLink>
+          <NavLink className="header_link" to="/movies">Movies</NavLink>
+        </nav>
+      </header>
     </div>
   );
 };
+
+export default App;
