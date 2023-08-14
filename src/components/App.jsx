@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import React from "react";
+import Home from "./Home";
 
 const App = () => {
   return (
@@ -10,6 +11,11 @@ const App = () => {
           <NavLink className="header_link" to="/movies">Movies</NavLink>
         </nav>
       </header>
+      <main>
+        <section>
+          <Home>Movies List</Home>
+        </section>
+      </main>
     </div>
   );
 };

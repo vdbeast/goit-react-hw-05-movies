@@ -1,5 +1,3 @@
-@import-normalize; /* bring in normalize.css styles */
-
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -30,4 +28,9 @@ code {
 
 .header_link.active{
   color: #c22e2e;
+}
+
+.movies_link{
+  text-decoration: none;
+  font-size: 20px;
 }
