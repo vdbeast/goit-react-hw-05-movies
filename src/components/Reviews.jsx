@@ -20,7 +20,8 @@ const Review = () => {
         <div>
             <h3>Reviews</h3>
             <ul>
-                {reviews.map(review => (
+                {reviews.length === 0 && <p>We don`t have any reviews for this movie</p>}
+                {reviews.length > 0 && reviews.map(review => (
                     <li key={review.id}>
                         <p>Author: {review.author}</p>
                         <p>{review.content}</p>

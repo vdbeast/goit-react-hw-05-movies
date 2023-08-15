@@ -4,7 +4,6 @@ import { fetchTopMovies } from './services';
 
 const Home = () => {
   const [movies, setMovies] = useState([]);
-  console.log(movies)
 
   useEffect(() => {
     fetchTopMovies()

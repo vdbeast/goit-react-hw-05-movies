@@ -15,8 +15,6 @@ const Cast = () => {
         console.error('Error fetching movies:', error);
       });
     }, [movieId]);
-
-    console.log(cast)
     
     return (
         <div>
