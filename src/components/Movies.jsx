@@ -1,28 +1,41 @@
-import React, { useState } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { NavLink, useLocation, useSearchParams } from "react-router-dom";
 import { fetchSearchMovies } from "./services";
 
 const Movies = () => {
     const [query, setQuery] = useState('');
     const [movies, setMovies] = useState([]);
     const location = useLocation();
+    const [searchParams, setSearchParams] = useSearchParams();
+    const queryString = searchParams.get('query');
 
+    useEffect(() => {
+        if (queryString) {
+            fetchSearchMovies(queryString)
+                .then((response) => {
+                    setMovies(response.data.results);
+                })
+                .catch(error => {
+                    console.error('Error fetching movies:', error);
+                });
+        }
+    }, [queryString]);
+    
     const handleSubmit = (event) => {
         event.preventDefault();
-        fetchSearchMovies(query)
-            .then((response) => {
-                setMovies(response.data.results);
-            })
-            .catch(error => {
-                console.error('Error fetching movies:', error);
-            });
+
+        const searchValue = event.currentTarget.elements.searchValue.value;
+
+        setSearchParams({
+            query: searchValue
+        });
     }
     
     return (
         <div>
             <form onSubmit={handleSubmit}>
                 <label>
-                    <input type="text" value={query} onChange={(e) => setQuery(e.target.value)}/>
+                    <input type="text" name="searchValue" value={query} onChange={(e) => setQuery(e.target.value)}/>
                     <button type="submit">Search</button>
                 </label>
             </form>
@@ -32,7 +45,7 @@ const Movies = () => {
                     {movies.map((movie) => {
                         return (<li key={movie.id}>
                             <NavLink
-                                state={{ from: location }}
+                                state={{ from: location, searchQuery: queryString }}
                                 className="movies_link"
                                 to={`/movies/${movie.id}`}>{movie.title || movie.name}
                             </NavLink>
