@@ -35,8 +35,8 @@ const Movies = () => {
         <div>
             <form onSubmit={handleSubmit}>
                 <label>
-                    <input type="text" name="searchValue" value={query} onChange={(e) => setQuery(e.target.value)}/>
-                    <button type="submit">Search</button>
+                    <input className="movie_search_input" type="text" name="searchValue" value={query} onChange={(e) => setQuery(e.target.value)}/>
+                    <button className="movie_search_btn" type="submit">Search</button>
                 </label>
             </form>
 
