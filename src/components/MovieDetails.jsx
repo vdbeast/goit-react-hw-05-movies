@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, lazy, Suspense } from "react";
 import { fetchMovieDetails } from './services'
-import { useParams, Link, Routes, Route } from 'react-router-dom';
-import Cast from "./Cast";
-import Review from "./Reviews";
+import { useParams, Link, Routes, Route, useNavigate } from 'react-router-dom';
+
+const Cast = lazy(() => import("./Cast"));
+const Review = lazy(() => import("./Reviews"));
 
 const MovieDetails = () => {
     const { movieId } = useParams();
-    const [ movieDetails, setMovieDetails ] = useState(null);
+    const [movieDetails, setMovieDetails] = useState(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
     fetchMovieDetails(movieId)
@@ -23,7 +25,10 @@ const MovieDetails = () => {
             {movieDetails && (
                 <div>
                     <div className="movie_details_container">
-                    <img src={`https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`} alt={movieDetails.title} width="350px" height="500px"/>
+                        <Link to="#" className="go-back-link" onClick={() => navigate(-1)}>
+                            {"<-- Go Back"}
+                        </Link>
+                        <img src={`https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`} alt={movieDetails.title} width="350px" height="500px"/>
                     <div className="movie_details_desc">
                         <h2>{movieDetails.title}</h2>
                         <p>Release date: {movieDetails.release_date}</p>
@@ -43,10 +48,12 @@ const MovieDetails = () => {
                             </li>
                         </ul> 
                     </div>
-                    <Routes>
-                        <Route path="cast" element={<Cast/>} />
-                        <Route path="reviews" element={<Review/> } />
-                    </Routes>
+                    <Suspense fallback={<div>Loading...</div>}>
+                        <Routes>
+                            <Route path="cast" element={<Cast/>} />
+                            <Route path="reviews" element={<Review/> } />
+                        </Routes>
+                    </Suspense>
                 </div>
             )}
         </div>
