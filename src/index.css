@@ -39,6 +39,7 @@ code {
   display: flex;
   gap: 40px;
   border-bottom: 2px solid black;
+  padding: 25px;
 }
 
 .movie_details_desc {

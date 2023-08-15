@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { fetchSearchMovies } from "./services";
 
 const Movies = () => {
     const [query, setQuery] = useState('');
     const [movies, setMovies] = useState([]);
+    const location = useLocation();
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -30,7 +31,11 @@ const Movies = () => {
                 <ul>
                     {movies.map((movie) => {
                         return (<li key={movie.id}>
-                            <NavLink className="movies_link" to={`/movies/${movie.id}`}>{movie.title||movie.name}</NavLink>
+                            <NavLink
+                                state={{ from: location }}
+                                className="movies_link"
+                                to={`/movies/${movie.id}`}>{movie.title || movie.name}
+                            </NavLink>
                         </li>)
                     })}
                 </ul>

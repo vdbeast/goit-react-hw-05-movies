@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { fetchTopMovies } from './services';
 
 const Home = () => {
   const [movies, setMovies] = useState([]);
+  const location = useLocation();
 
   useEffect(() => {
     fetchTopMovies()
@@ -22,7 +23,11 @@ const Home = () => {
         <ul className="Home">
           {movies.map((movie) => (
             <li key={movie.id}>
-              <NavLink className="movies_link" to={`/movies/${movie.id}`}>{movie.title || movie.name}</NavLink>
+              <NavLink
+                state={{ from: location }}
+                className="movies_link"
+                to={`/movies/${movie.id}`}>{movie.title || movie.name}
+              </NavLink>
             </li>
           ))}
         </ul>

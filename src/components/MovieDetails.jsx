@@ -1,6 +1,6 @@
-import React, { useEffect, useState, lazy, Suspense } from "react";
+import React, { useEffect, useState, lazy, Suspense, useRef } from "react";
 import { fetchMovieDetails } from './services'
-import { useParams, Link, Routes, Route, useNavigate } from 'react-router-dom';
+import { useLocation, useParams, Link, Routes, Route } from 'react-router-dom';
 
 const Cast = lazy(() => import("./Cast"));
 const Review = lazy(() => import("./Reviews"));
@@ -8,7 +8,8 @@ const Review = lazy(() => import("./Reviews"));
 const MovieDetails = () => {
     const { movieId } = useParams();
     const [movieDetails, setMovieDetails] = useState(null);
-    const navigate = useNavigate();
+    const location = useLocation();
+    const backLinkHref = useRef(location.state?.from ?? "/");
 
     useEffect(() => {
     fetchMovieDetails(movieId)
@@ -24,10 +25,10 @@ const MovieDetails = () => {
         <div>
             {movieDetails && (
                 <div>
+                    <div>
+                        <Link className="go-back-link" to={backLinkHref.current}>{"<-- Go Back"}</Link>
+                    </div>
                     <div className="movie_details_container">
-                        <Link to="#" className="go-back-link" onClick={() => navigate(-1)}>
-                            {"<-- Go Back"}
-                        </Link>
                         <img src={`https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`} alt={movieDetails.title} width="350px" height="500px"/>
                     <div className="movie_details_desc">
                         <h2>{movieDetails.title}</h2>
