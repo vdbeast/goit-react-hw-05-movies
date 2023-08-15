@@ -5,11 +5,13 @@ import { useParams } from 'react-router-dom';
 const Review = () => {
     const { movieId } = useParams();
     const [reviews, setReviews] = useState([]);
+    const [reviewsLoaded, setReviewsLoaded] = useState(false);
 
     useEffect(() => {
         fetchMovieReviews(movieId)
             .then((response) => {
                 setReviews(response.data.results);
+                setReviewsLoaded(true);
             })
             .catch(error => {
                 console.error('Error fetching movie reviews:', error);
@@ -20,8 +22,8 @@ const Review = () => {
         <div>
             <h3>Reviews</h3>
             <ul>
-                {reviews.length === 0 && <p>We don`t have any reviews for this movie</p>}
-                {reviews.length > 0 && reviews.map(review => (
+                {reviewsLoaded && reviews.length === 0 && <p>We don`t have any reviews for this movie</p>}
+                {reviews.map(review => (
                     <li key={review.id}>
                         <p>Author: {review.author}</p>
                         <p>{review.content}</p>
