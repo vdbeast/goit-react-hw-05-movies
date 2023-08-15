@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { fetchMovieCredits } from './services';
 import { useParams } from 'react-router-dom';
+import PropTypes from "prop-types"; 
 
 const Cast = () => {
     const { movieId } = useParams();
@@ -35,5 +36,9 @@ const Cast = () => {
         </div>
     );
 }
+
+Cast.propTypes = {
+    movieId: PropTypes.string
+};
 
 export default Cast;

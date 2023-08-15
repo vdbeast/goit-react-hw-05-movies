@@ -1,6 +1,7 @@
 import React, { useEffect, useState, lazy, Suspense, useRef } from "react";
 import { fetchMovieDetails } from './services'
 import { useLocation, useParams, Link, Routes, Route } from 'react-router-dom';
+import PropTypes from "prop-types"; 
 
 const Cast = lazy(() => import("./Cast"));
 const Review = lazy(() => import("./Reviews"));
@@ -60,5 +61,9 @@ const MovieDetails = () => {
         </div>
     )
 }
+
+MovieDetails.propTypes = {
+    movieId: PropTypes.string
+};
 
 export default MovieDetails;

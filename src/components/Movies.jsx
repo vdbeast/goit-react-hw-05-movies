@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { NavLink, useLocation, useSearchParams } from "react-router-dom";
 import { fetchSearchMovies } from "./services";
+import PropTypes from "prop-types"; 
 
 const Movies = () => {
     const [query, setQuery] = useState('');
@@ -57,5 +58,9 @@ const Movies = () => {
         </div>
     )
 }
+
+Movies.propTypes = {
+    query: PropTypes.string
+};
 
 export default Movies;
