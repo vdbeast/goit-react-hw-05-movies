@@ -3,7 +3,6 @@ import React from "react";
 import Home from "./Home";
 import Movies from "./Movies";
 import MovieDetails from "./MovieDetails";
-import Cast from "./Cast";
 
 const App = () => {
   return (
@@ -19,7 +18,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/movies" element={<Movies />} />
           <Route path="/movies/:movieId/*" element={<MovieDetails />} />
-          <Route path="/movies/:movieId/cast" element={<Cast />} />
+          <Route path="*" element={<Home />} />
         </Routes>
       </main>
     </div>

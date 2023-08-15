@@ -21,9 +21,9 @@ const Home = () => {
       {movies.length > 0 && (
         <ul className="Home">
           {movies.map((movie) => (
-              <li key={movie.id}>
-              <NavLink className="movies_link" to={`/movies/${movie.id}`}>{movie.title||movie.name}</NavLink>
-              </li>
+            <li key={movie.id}>
+              <NavLink className="movies_link" to={`/movies/${movie.id}`}>{movie.title || movie.name}</NavLink>
+            </li>
           ))}
         </ul>
       )}
