@@ -39,13 +39,13 @@ const MovieDetails = () => {
                                 <Link to="cast">Cast</Link> 
                             </li>
                             <li>
-                                <Link to="review">Review</Link>
+                                <Link to="reviews">Review</Link>
                             </li>
                         </ul> 
                     </div>
                     <Routes>
-                        <Route path="cast" element={<Cast />} />
-                        <Route path="review" element={<Review/> } />
+                        <Route path="cast" element={<Cast/>} />
+                        <Route path="reviews" element={<Review/> } />
                     </Routes>
                 </div>
             )}

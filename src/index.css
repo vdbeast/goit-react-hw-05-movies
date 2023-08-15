@@ -41,7 +41,23 @@ code {
   border-bottom: 2px solid black;
 }
 
-.movie_details_desc{
+.movie_details_desc {
   display: flex;
   flex-direction: column;
+}
+
+.cast_wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.actor_title {
+  padding: bottom 0;
+  margin: 0;
+}
+
+.actor_desc {
+  margin: 0;
+  padding-bottom: 20px;
 }

@@ -42,10 +42,10 @@ export const fetchMovieDetails = (movieId) => {
     return axios.request(options);
 };
 
-export const fetchMovieCredits = () => {
+export const fetchMovieCredits = (movieId) => {
     const options = {
         method: 'GET',
-        url: 'https://api.themoviedb.org/3/movie/movie_id/credits',
+        url: `https://api.themoviedb.org/3/movie/${movieId}/credits`,
         params: { language: 'en-US' },
         headers: {
             accept: 'application/json',
@@ -56,10 +56,10 @@ export const fetchMovieCredits = () => {
     return axios.request(options);
 };
 
-export const fetchMovieReviews = () => {
+export const fetchMovieReviews = (movieId) => {
     const options = {
         method: 'GET',
-        url: 'https://api.themoviedb.org/3/movie/movie_id/reviews',
+        url: `https://api.themoviedb.org/3/movie/${movieId}/reviews`,
         params: {language: 'en-US', page: '1'},
         headers: {
             accept: 'application/json',
