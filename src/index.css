@@ -38,6 +38,7 @@ code {
 .movie_details_container{
   display: flex;
   gap: 40px;
+  border-bottom: 2px solid black;
 }
 
 .movie_details_desc{
