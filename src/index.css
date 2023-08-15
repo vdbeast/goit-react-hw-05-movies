@@ -34,3 +34,13 @@ code {
   text-decoration: none;
   font-size: 20px;
 }
+
+.movie_details_container{
+  display: flex;
+  gap: 40px;
+}
+
+.movie_details_desc{
+  display: flex;
+  flex-direction: column;
+}

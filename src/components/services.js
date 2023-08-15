@@ -28,11 +28,11 @@ export const fetchSearchMovies = (query) => {
     return axios.request(options);
 };
 
-export const fetchMovieDetails = () => {
+export const fetchMovieDetails = (movieId) => {
     const options = {
         method: 'GET',
-        url: 'https://api.themoviedb.org/3/movie/movie_id',
-        params: { language: 'en-US' },
+        url: `https://api.themoviedb.org/3/movie/${movieId}`,
+        params: { language: 'en-US' }, 
         headers: {
             accept: 'application/json',
             Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlMWI4ZTQwY2IwYzE0ODE4N2E0M2I1MzA5YTY1MjczNyIsInN1YiI6IjY0ZDkyZDhmYjc3ZDRiMDExYzMzMTE0OCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.yc5irU_pe1wJRFUMUb6iMewGOYynwCuXi9xlSumNeFI'

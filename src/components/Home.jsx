@@ -3,12 +3,13 @@ import { NavLink } from "react-router-dom";
 import { fetchTopMovies } from './services';
 
 const Home = () => {
-  const [titles, setTitles] = useState([]);
+  const [movies, setMovies] = useState([]);
+  console.log(movies)
 
   useEffect(() => {
     fetchTopMovies()
       .then((response) => {
-        setTitles(response.data.results);
+        setMovies(response.data.results);
       })
       .catch(error => {
         console.error('Error fetching movies:', error);
@@ -17,11 +18,11 @@ const Home = () => {
 
   return (
     <div>
-      {titles.length > 0 && (
+      {movies.length > 0 && (
         <ul className="Home">
-          {titles.map((title) => (
-              <li key={title.id}>
-                  <NavLink className="movies_link">{title.title}</NavLink>
+          {movies.map((movie) => (
+              <li key={movie.id}>
+              <NavLink className="movies_link" to={`/movies/${movie.id}`}>{movie.title||movie.name}</NavLink>
               </li>
           ))}
         </ul>
